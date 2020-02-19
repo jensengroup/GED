@@ -2,6 +2,8 @@
 Written by Jan H. Jensen, 2020
 '''
 
+"calculation of graph edit distance"
+
 from rdkit import Chem
 import networkx as nx
 
@@ -14,13 +16,15 @@ def get_graph(mol):
   G = nx.from_numpy_matrix(am)
   return G
 
-mol1 = Chem.MolFromSmiles('c1ccccc1')
-#mol2 = Chem.MolFromSmiles('c1cnccc1')
-mol2 = Chem.MolFromSmiles('C=CC=CC=C') 
+def calc_GED(s1,s2):
+  mol1 = Chem.MolFromSmiles(s1)
+  mol2 = Chem.MolFromSmiles(s2)
+  G1 = get_graph(mol1)
+  G2 = get_graph(mol2)
+  GDE = nx.graph_edit_distance(G1, G2, edge_match=lambda a, b: a['weight'] == b['weight'])
+  return int(GDE)
 
-G1 = get_graph(mol1)
-G2 = get_graph(mol2)
 
-GDE = nx.graph_edit_distance(G1, G2, edge_match=lambda a,b: a['weight'] == b['weight'])
 
-print(GDE)
+
+
