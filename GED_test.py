@@ -23,7 +23,7 @@ class MyTestCase(unittest.TestCase):
         mol_dict = {
             'benzene->toluene': ('c1ccccc1', 'c1ccccc1C',2),
             'benzene->chlorobenzene': ('c1ccccc1', 'c1ccccc1Cl', 2),
-            'benzene->anisole':('c1ccccc1', 'c1ccccc1OC', 3)
+            'benzene->anisole':('c1ccccc1', 'c1ccccc1OC', 4)
         }
         self.run_tests(mol_dict)
 
